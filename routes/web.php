@@ -20,12 +20,22 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
+// filter incoming query based on whether search is in the request
 Route::get('/users', function () {
     return Inertia::render('Users', [
-        'users' => User::paginate(10)->through(fn ($user) => [
-            'id' => $user->id,
-            'name' => $user->name,
-        ])
+        'users' => User::query()
+            /* when you find something for the search input, append to the query */
+            ->when(Request::input('search'), function ($query, $search) {
+                $query->where('name', 'like', "%{$search}%");
+            })
+            ->paginate(10)
+            ->withQueryString()
+            ->through(fn ($user) => [
+                'id' => $user->id,
+                'name' => $user->name,
+            ]),
+
+        'filters' => Request::only(['search'])
     ]);
 });
 

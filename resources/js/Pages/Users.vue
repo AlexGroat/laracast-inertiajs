@@ -1,6 +1,15 @@
 <template>
   <Head title="Users"> </Head>
-  <h1 class="mx-3 my-2 font-bold text-3xl">Users</h1>
+  <div class="flex justify-between mb-4">
+    <h1 class="mx-3 my-2 font-bold text-3xl">Users</h1>
+
+    <input
+      v-model="search"
+      class="border rounded-lg border-gray-300 px-2"
+      type="text"
+      placeholder="Search users.."
+    />
+  </div>
 
   <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -45,28 +54,39 @@
   </div>
 
   <!-- Paginator -->
-    <div class="mt-6 space-x-2">
-      <Pagination :links="users.links" />
-    </div>
-
-    <!--     
-    <template v-for="link in users.links"> -->
-    <!-- diving into vue dom to access user properties -->
-    <!-- <Link v-if="link.url" :href="link.url" v-html="link.label"></Link>
-
-      <span class="text-gray-300" v-else v-html="link.label"></span>
-    </template> -->
-  <!-- </div> -->
+  <div class="mt-6 space-x-2">
+    <Pagination :links="users.links" />
+  </div>
 </template>
 
 <script>
-import Pagination from '@/Pages/Shared/Pagination.vue'
+import Pagination from "@/Pages/Shared/Pagination.vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import { watch } from "vue";
 
 export default {
-  components: { Link, Pagination },
+  components: { Pagination, Link },
+
   props: {
     users: Object,
+    filters: Object
+  },
+
+  data() {
+    return {
+      search: this.filters.search,
+    };
+  },
+
+  watch: {
+    search(value) {
+      this.$inertia.get(
+        "/users",
+        { search: value },
+        // each time we are replacing the current request with a new one 
+        { preserveState: true, replace: true }
+      );
+    },
   },
 };
 </script>
