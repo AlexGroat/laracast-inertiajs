@@ -293,8 +293,6 @@ var appName = ((_window$document$getE = window.document.getElementsByTagName("ti
   },
   resolve: function () {
     var _resolve = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(name) {
-      var _page$layout;
-
       var page;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
@@ -305,7 +303,13 @@ var appName = ((_window$document$getE = window.document.getElementsByTagName("ti
 
             case 2:
               page = _context.sent["default"];
-              (_page$layout = page.layout) !== null && _page$layout !== void 0 ? _page$layout : page.layout = _Pages_Shared_Layout__WEBPACK_IMPORTED_MODULE_4__["default"];
+
+              /* if a pages layout is not specified 
+              default to this layout */
+              if (page.layout === undefined) {
+                page.layout = _Pages_Shared_Layout__WEBPACK_IMPORTED_MODULE_4__["default"];
+              }
+
               return _context.abrupt("return", page);
 
             case 5:
@@ -609,6 +613,10 @@ var map = {
 	"./Home.vue": [
 		"./resources/js/Pages/Home.vue",
 		"resources_js_Pages_Home_vue"
+	],
+	"./Login.vue": [
+		"./resources/js/Pages/Login.vue",
+		"resources_js_Pages_Login_vue"
 	],
 	"./Settings.vue": [
 		"./resources/js/Pages/Settings.vue",

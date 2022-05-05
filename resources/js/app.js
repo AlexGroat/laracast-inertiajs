@@ -13,7 +13,11 @@ createInertiaApp({
     resolve: async (name) => {
         let page = (await import(`./Pages/${name}.vue`)).default;
 
-        page.layout ??= Layout;
+        /* if a pages layout is not specified 
+        default to this layout */
+        if (page.layout === undefined) {
+            page.layout = Layout;
+        }
 
         return page;
     },
