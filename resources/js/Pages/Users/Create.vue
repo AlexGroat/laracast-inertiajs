@@ -19,6 +19,12 @@
         name="name"
         required
       />
+
+      <div
+        v-if="errors.name"
+        v-text="errors.name"
+        class="text-red-500 text-xs mt-1"
+      ></div>
     </div>
     <div class="mb-6">
       <label
@@ -35,6 +41,11 @@
         name="email"
         required
       />
+      <div
+        v-if="errors.email"
+        v-text="errors.email"
+        class="text-red-500 text-xs mt-1"
+      ></div>
     </div>
     <div class="mb-6">
       <label
@@ -51,6 +62,11 @@
         name="password"
         required
       />
+      <div
+        v-if="errors.password"
+        v-text="errors.password"
+        class="text-red-500 text-xs mt-1"
+      ></div>
     </div>
 
     <div class="mb-6">
@@ -68,6 +84,7 @@
           method = 'post';
           action = '/users';
         "
+        :disabled="form.processing"
       >
         Create
       </button>
@@ -77,6 +94,9 @@
 
 <script>
 export default {
+  props: {
+    errors: Object,
+  },
   methods: {
     submit() {
       this.form.submit(this.method, this.action);
@@ -86,6 +106,7 @@ export default {
   data() {
     return {
       method: null,
+      action: null,
       form: this.$inertia.form({
         name: "",
         email: "",

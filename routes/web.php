@@ -2,7 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -55,6 +55,8 @@ Route::post('/users', function () {
 
     // persist
     User::create($userAttributes);
+
+    sleep(2);
 
     // redirect
     return redirect('/users');

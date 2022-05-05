@@ -64,6 +64,7 @@
 <script>
 import Pagination from "@/Pages/Shared/Pagination.vue";
 import { Link } from "@inertiajs/inertia-vue3";
+import debounce from "lodash/debounce";
 import { watch } from "vue";
 
 export default {
@@ -81,14 +82,13 @@ export default {
   },
 
   watch: {
-    search(value) {
+    search: debounce(function(value) {
       this.$inertia.get(
         "/users",
         { search: value },
-        // each time we are replacing the current request with a new one
         { preserveState: true, replace: true }
       );
-    },
+    }, 500),
   },
 };
 </script>
