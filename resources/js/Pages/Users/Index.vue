@@ -3,7 +3,7 @@
   <div class="flex justify-between mb-4">
     <div class="flex items-center">
       <h1 class="mx-3 my-2 font-bold text-3xl">Users</h1>
-      <Link href="/users/create" class="text-blue-600">New User </Link>
+      <Link v-if="can.createUser" href="/users/create" class="text-blue-600">New User </Link>
     </div>
     <input
       v-model="search"
@@ -73,6 +73,7 @@ export default {
   props: {
     users: Object,
     filters: Object,
+    can: Object
   },
 
   data() {
