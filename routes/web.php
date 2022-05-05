@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,7 +23,7 @@ Route::get('/', function () {
 
 // filter incoming query based on whether search is in the request
 Route::get('/users', function () {
-    return Inertia::render('Users', [
+    return Inertia::render('Users/Index', [
         'users' => User::query()
             /* when you find something for the search input, append to the query */
             ->when(Request::input('search'), function ($query, $search) {
@@ -37,6 +38,26 @@ Route::get('/users', function () {
 
         'filters' => Request::only(['search'])
     ]);
+});
+
+Route::get('/users/create', function () {
+
+    return Inertia::render('Users/Create');
+});
+
+Route::post('/users', function () {
+    // validate
+    $userAttributes = Request::validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
+
+    // persist
+    User::create($userAttributes);
+
+    // redirect
+    return redirect('/users');
 });
 
 Route::get('/settings', function () {

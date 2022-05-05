@@ -1,8 +1,10 @@
 <template>
   <Head title="Users"> </Head>
   <div class="flex justify-between mb-4">
-    <h1 class="mx-3 my-2 font-bold text-3xl">Users</h1>
-
+    <div class="flex items-center">
+      <h1 class="mx-3 my-2 font-bold text-3xl">Users</h1>
+      <Link href="/users/create" class="text-blue-600">New User </Link>
+    </div>
     <input
       v-model="search"
       class="border rounded-lg border-gray-300 px-2"
@@ -69,7 +71,7 @@ export default {
 
   props: {
     users: Object,
-    filters: Object
+    filters: Object,
   },
 
   data() {
@@ -83,7 +85,7 @@ export default {
       this.$inertia.get(
         "/users",
         { search: value },
-        // each time we are replacing the current request with a new one 
+        // each time we are replacing the current request with a new one
         { preserveState: true, replace: true }
       );
     },
