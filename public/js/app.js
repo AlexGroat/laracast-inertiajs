@@ -612,6 +612,7 @@ var map = {
 	],
 	"./Home.vue": [
 		"./resources/js/Pages/Home.vue",
+		"/js/vendor",
 		"resources_js_Pages_Home_vue"
 	],
 	"./Login.vue": [

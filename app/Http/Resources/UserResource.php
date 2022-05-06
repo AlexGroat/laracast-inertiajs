@@ -19,11 +19,9 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            /* grab the auth user, check if that user is the current user that is wrapped 
-            in the user resource */
-            $this->mergeWhen(Auth::user()->is($this), [
-                'email' => $this->email
-            ])
+            'can' => [
+                'createUser' => Auth::user()->can('create', $this->resource)
+            ]
         ];
     }
 }

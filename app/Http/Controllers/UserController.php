@@ -17,8 +17,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection(User::all());
-
         return Inertia::render('Users/Index', [
             'users' => User::query()
                 /* when you find something for the search input, append to the query */
