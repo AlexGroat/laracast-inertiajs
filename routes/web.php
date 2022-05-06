@@ -43,9 +43,10 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/users/create', function () {
-
         return Inertia::render('Users/Create');
-    });
+        /* only admin user can access this route,
+        no existing user record, provide class path */
+    })->can('create', User::class);
 
     Route::post('/users', function () {
         // validate
@@ -58,14 +59,11 @@ Route::middleware('auth')->group(function () {
         // persist
         User::create($userAttributes);
 
-        sleep(2);
-
         // redirect
         return redirect('/users');
     });
 
     Route::get('/settings', function () {
-
         return Inertia::render('Settings');
     });
 });
