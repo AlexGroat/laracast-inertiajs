@@ -16,7 +16,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     // selector is after highlight
-    (0,_Services_SyntaxHighlighting__WEBPACK_IMPORTED_MODULE_0__.highlight)("#color");
+    (0,_Services_SyntaxHighlighting__WEBPACK_IMPORTED_MODULE_0__.highlight)();
   }
 });
 
@@ -88,7 +88,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "highlight": () => (/* binding */ highlight)
 /* harmony export */ });
-/* harmony import */ var highlight_js_lib_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! highlight.js/lib/common */ "./node_modules/highlight.js/es/common.js");
+/* harmony import */ var highlight_js_lib_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! highlight.js/lib/core */ "./node_modules/highlight.js/es/core.js");
 /* harmony import */ var highlight_js_lib_languages_javascript__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! highlight.js/lib/languages/javascript */ "./node_modules/highlight.js/es/languages/javascript.js");
 /* harmony import */ var highlight_js_lib_languages_php__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! highlight.js/lib/languages/php */ "./node_modules/highlight.js/es/languages/php.js");
 /* harmony import */ var highlight_js_styles_github_dark_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! highlight.js/styles/github-dark.css */ "./node_modules/highlight.js/styles/github-dark.css");
@@ -96,17 +96,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-highlight_js_lib_common__WEBPACK_IMPORTED_MODULE_0__["default"].registerLanguage("php", highlight_js_lib_languages_php__WEBPACK_IMPORTED_MODULE_2__["default"]);
-highlight_js_lib_common__WEBPACK_IMPORTED_MODULE_0__["default"].registerLanguage("javascript", highlight_js_lib_languages_javascript__WEBPACK_IMPORTED_MODULE_1__["default"]); // if no query selection is made, highlight all
+highlight_js_lib_core__WEBPACK_IMPORTED_MODULE_0__["default"].registerLanguage("php", highlight_js_lib_languages_php__WEBPACK_IMPORTED_MODULE_2__["default"]);
+highlight_js_lib_core__WEBPACK_IMPORTED_MODULE_0__["default"].registerLanguage("javascript", highlight_js_lib_languages_javascript__WEBPACK_IMPORTED_MODULE_1__["default"]); // if no query selection is made, highlight all
 
 function highlight(selector) {
   if (!selector) {
-    highlight_js_lib_common__WEBPACK_IMPORTED_MODULE_0__["default"].highlightAll();
+    highlight_js_lib_core__WEBPACK_IMPORTED_MODULE_0__["default"].highlightAll();
     return;
   }
 
   document.querySelectorAll(selector + " pre code ").forEach(function (element) {
-    highlight_js_lib_common__WEBPACK_IMPORTED_MODULE_0__["default"].highlightElement(element);
+    highlight_js_lib_core__WEBPACK_IMPORTED_MODULE_0__["default"].highlightElement(element);
   });
 }
 

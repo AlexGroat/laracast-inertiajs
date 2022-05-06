@@ -42,7 +42,7 @@ import { highlight } from "@/Services/SyntaxHighlighting";
 export default {
   mounted() {
     // selector is after highlight
-    highlight("#color");
+    highlight();
   },
 };
 </script>
